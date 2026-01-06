@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>RAHEEM-XMD Deploy</title>
+</head>
+<body>
+  <h3>Deploy Bot</h3>
+
+  <input id="session"
+    placeholder="RAHEEM-XMD~SESSION_ID"
+    style="width:100%" />
+
+  <br><br>
+
+  <button onclick="deploy()">Deploy</button>
+
+  <script>
+    function deploy() {
+      fetch("/deploy", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          session: document.getElementById("session").value
+        })
+      })
+      .then(r => r.json())
+      .then(d => alert(d.msg))
+    }
+  </script>
+</body>
+</html>
